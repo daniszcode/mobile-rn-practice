@@ -11,19 +11,16 @@ import {
   SafeAreaView,
   ScrollView,
   StatusBar,
-  StyleSheet,
   Text,
   useColorScheme,
   View,
 } from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import {Colors, Header} from 'react-native/Libraries/NewAppScreen';
+
+import {styles} from './styles';
+import {Loan} from '../Loan/Loan';
+import StatusComponent from '../screen/components/StatusBar/statusBar';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -54,7 +51,15 @@ function Section({children, title}: SectionProps): JSX.Element {
     </View>
   );
 }
-
+const teste = new Loan(
+  '123',
+  'Auto',
+  new Date(2022, 4, 15),
+  new Date(2022, 4, 15),
+  new Date(2022, 4, 15),
+  [],
+  52,
+);
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -77,42 +82,19 @@ function App(): JSX.Element {
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
           <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
+            <Text style={styles.highlight}>App.tsx {teste.id}</Text>
           </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
+          <Section title="Step One">
+            <Text style={styles.sectionTitle}>Loan {teste.type}</Text>
           </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
+          <View style={styles.container}>
+            <Text style={styles.title}>Status do Boleto</Text>
+          </View>
+          <StatusComponent />
         </View>
       </ScrollView>
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
 export default App;

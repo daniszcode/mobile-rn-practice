@@ -48,7 +48,7 @@ export class Loan {
   };
 }
 
-class Installment {
+export class Installment {
   id: number;
   number: number;
   amountToCharge: Double;
